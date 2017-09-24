@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1
 {
     public class Builder
     {
-        public static Televisor buildTelevisor() {
+        public static Televisor buildTelevisor()
+        {
             Televisor televisor = new Televisor();
             televisor.ProducerCompany = Builder.enterNameOfProducerCompany();
             televisor.Model = Builder.enterNameOfModel();
@@ -17,7 +14,8 @@ namespace Lab1
             return televisor;
         }
 
-        public static string enterNameOfProducerCompany() {
+        public static string enterNameOfProducerCompany()
+        {
             string nameOfProducerCompany = "noName";
             Console.WriteLine("Enter name of producer company?");
             nameOfProducerCompany = Console.ReadLine();
@@ -32,7 +30,8 @@ namespace Lab1
             return nameOfModel;
         }
 
-        public static int enterPrice() {
+        public static int enterPrice()
+        {
             string priceLine = "priceLine";
             do
             {

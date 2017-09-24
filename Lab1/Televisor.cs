@@ -1,9 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Lab1
 {
-    [Serializable]
+    [DataContract]
     public class Televisor
     {
         private string nameOfproducerCompany;
@@ -11,6 +10,7 @@ namespace Lab1
         private int price;
         private int count;
 
+        [DataMember]
         public string ProducerCompany
         {
             get
@@ -24,6 +24,7 @@ namespace Lab1
             }
         }
 
+        [DataMember]
         public string Model
         {
             get
@@ -37,6 +38,7 @@ namespace Lab1
             }
         }
 
+        [DataMember]
         public int Price
         {
             get
@@ -50,6 +52,7 @@ namespace Lab1
             }
         }
 
+        [DataMember]
         public int Count
         {
             get
@@ -78,9 +81,10 @@ namespace Lab1
             this.price = price;
             this.count = count;
         }
+
         public override string ToString()
         {
-            return "Televisor:\n" +
+            return "TELEVISOR" + "\n" +
                 "producerCompany=" + this.nameOfproducerCompany + "\n" +
                 "model=" + this.nameOfModel + "\n" +
                 "price=" + this.price + "\n" +

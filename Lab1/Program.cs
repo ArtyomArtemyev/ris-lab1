@@ -4,13 +4,14 @@ using System.Linq;
 
 namespace Lab1
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             FileWorker fileWorker = new FileWorker();
             Dictionary<int, Televisor> televisorsList = fileWorker.getTelevisorsFromFile();
-            if (televisorsList == null) {
+            if (televisorsList == null)
+            {
                 televisorsList = new Dictionary<int, Televisor>();
             }
             while (true)
@@ -29,13 +30,14 @@ namespace Lab1
                             }
                         }
                         break;
+
                     case 2:
                         {
                             Televisor televisor = Builder.buildTelevisor();
                             int key = 1;
-                            if (televisorsList.Count() == 0)
+                            if (televisorsList.Count() != 0)
                             {
-                                key = fileWorker.getTelevisorsList().Count() + 1;
+                                key = televisorsList.Count() + 1;
                             }
                             televisorsList.Add(key, televisor);
                             fileWorker.setTelevisorsList(televisorsList);
@@ -53,21 +55,21 @@ namespace Lab1
                             else
                             {
                                 Utility.showInformationFrom(fileWorker.getTelevisorsFromFile());
+                                string idForDeleteing = "lineIdForDeleting";
+                                do
+                                {
+                                    Console.WriteLine("Enter id for deleting");
+                                    idForDeleteing = Console.ReadLine();
+                                } while (!Checker.checkIsInt(idForDeleteing));
+                                televisorsList.Remove(int.Parse(idForDeleteing));
+                                fileWorker.reCreatingFile();
+                                fileWorker.setTelevisorsList(televisorsList);
+                                fileWorker.setTelevisorsToFile();
+                                Console.WriteLine("Successfull delete televisor");
                             }
-                            string idForDeleteing = "lineIdForDeleting";
-                            do
-                            {
-                                Console.WriteLine("Enter id for deleting");
-                                idForDeleteing = Console.ReadLine();
-                            } while (!Checker.checkIsInt(idForDeleteing));
-                            televisorsList.Remove(int.Parse(idForDeleteing));
-                            fileWorker.reCreatingFile();
-                            fileWorker.setTelevisorsList(televisorsList);
-                            fileWorker.setTelevisorsToFile();
-
-                            Console.WriteLine("Successfull delete televisor");
                         }
                         break;
+
                     case 4:
                         {
                             if (televisorsList.Count() == 0)
@@ -77,20 +79,40 @@ namespace Lab1
                             else
                             {
                                 Utility.showInformationFrom(fileWorker.getTelevisorsFromFile());
-                            }                          
-                            fileWorker.setTelevisorsList(Utility.changeTelevisor(televisorsList, Utility.getIdTelevisorForChanging(televisorsList)));
-                            fileWorker.reCreatingFile();
-                            fileWorker.setTelevisorsToFile();
-
-                            Console.WriteLine("Successfull editing televisor");
+                                fileWorker.setTelevisorsList(Utility.changeTelevisor(televisorsList, Utility.getIdTelevisorForChanging(televisorsList)));
+                                fileWorker.reCreatingFile();
+                                fileWorker.setTelevisorsToFile();
+                                Console.WriteLine("Successfull editing televisor");
+                            }
                         }
                         break;
+
                     case 5:
-                        { }
+                        {
+                            if (televisorsList.Count() == 0)
+                            {
+                                Console.WriteLine("No objects in file");
+                            }
+                            else
+                            {
+                                new Sorter(televisorsList).sortingMenu();
+                            }
+                        }
                         break;
+
                     case 6:
-                        { }
+                        {
+                            if (televisorsList.Count() == 0)
+                            {
+                                Console.WriteLine("No objects in file");
+                            }
+                            else
+                            {
+                                new Finder(televisorsList).searchingMenu();
+                            }
+                        }
                         break;
+
                     case 7:
                         System.Environment.Exit(0);
                         break;

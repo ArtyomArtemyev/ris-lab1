@@ -15,9 +15,9 @@ namespace Lab1
             Console.WriteLine("3 - Delete object");
             Console.WriteLine("4 - Change object");
             Console.WriteLine("5 - Sort objects");
-            Console.WriteLine("6 - Find object(s)");
+            Console.WriteLine("6 - Find object");
             Console.WriteLine("7 - Exit");
-            Console.WriteLine("Enter:");
+            Console.Write("Enter:");
             try {
                 userSolve = int.Parse(Console.ReadLine());
             } catch (System.FormatException) {
